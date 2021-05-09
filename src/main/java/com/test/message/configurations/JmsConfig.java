@@ -1,6 +1,7 @@
 package com.test.message.configurations;
 
-import static com.test.message.constants.QueueConstants.QUEUE_NAME;
+import static com.test.message.constants.QueueConstants.COMPLEX_MESSAGE_QUEUE;
+import static com.test.message.constants.QueueConstants.SIMPLE_MESSAGE_QUEUE;
 
 import javax.jms.Queue;
 import org.apache.activemq.command.ActiveMQQueue;
@@ -14,9 +15,14 @@ import org.springframework.jms.support.converter.MessageType;
 @Configuration
 @EnableJms
 public class JmsConfig {
-    @Bean
-    public Queue queue() {
-        return new ActiveMQQueue(QUEUE_NAME);
+    @Bean(SIMPLE_MESSAGE_QUEUE)
+    public Queue simpleMessageQueue() {
+        return new ActiveMQQueue(SIMPLE_MESSAGE_QUEUE);
+    }
+
+    @Bean(COMPLEX_MESSAGE_QUEUE)
+    public Queue complexMessageQueue() {
+        return new ActiveMQQueue(COMPLEX_MESSAGE_QUEUE);
     }
 
     @Bean
